@@ -1,17 +1,17 @@
 #!/bin/bash
 # tagger script by @bdsqlsz
 # Train data path
-train_data_dir="./input" # input images path | 图片输入路径
-repo_id="SmilingWolf/wd-v1-4-swinv2-tagger-v2" # model repo id from huggingface |huggingface模型repoID
+train_data_dir="/appdata/finetuning/train/finetuning/realistic/v1" # input images path | 图片输入路径
+repo_id="SmilingWolf/wd-v1-4-vit-tagger-v2" # model repo id from huggingface |huggingface模型repoID
 model_dir="" # model dir path | 本地模型文件夹路径
 batch_size=12 # batch size in inference 批处理大小，越大越快
 max_data_loader_n_workers=0 # enable image reading by DataLoader with this number of workers (faster) | 0最快
 thresh=0.35 # concept thresh | 最小识别阈值
 general_threshold=0.35 # general threshold | 总体识别阈值 
 character_threshold=0.1 # character threshold | 人物姓名识别阈值
-remove_underscore=0 # remove_underscore | 下划线转空格，1为开，0为关 
+remove_underscore=1 # remove_underscore | 下划线转空格，1为开，0为关
 undesired_tags="" # no need tags | 排除标签
-recursive=0 # search for images in subfolders recursively | 递归搜索下层文件夹，1为开，0为关
+recursive=1 # search for images in subfolders recursively | 递归搜索下层文件夹，1为开，0为关
 frequency_tags=0 # order by frequency tags | 从大到小按识别率排序标签，1为开，0为关
 
 

@@ -1,0 +1,87 @@
+```text
+参数类型	参数名	参数说明	备注
+sd_models_arguments sd模型相关参数	--v2	加载v2版本模型
+--v_parameterization	激活v_parameterization训练	需要与v2一起使用
+--pretrained_model_name_or_path	模型名称或路径
+--tokenizer_cache_dir	Tokenizer缓存的文件夹路径
+dataset_arguments 训练集相关参数	--train_data_dir	训练集数据路径
+--shuffle_caption	是否对标签进行打乱操作	能提高模型的泛化性
+--caption_extention	标签文件的格式，默认是.caption
+--keep_tokens	保留前几个标签位置不变，默认是0
+--color_aug	是否启用色彩数据增强
+--face_crop_aug_range	是否启用抠脸数据增强
+--random_crop	是否进行随机抠图数据增强
+--debug_dataset	用于调试查看数据图像
+--resolution	训练时的图像分辨率width,height
+--cache_latents	是否开启缓存以减少内存
+--vae_batch_size	缓存latents时的batch size
+--enable_bucket	是否开启分桶	当训练集中图片尺寸不一致时，可以根据图像尺寸将数据分成若干种尺寸的batch
+--min_bucket_reso	分桶时最小分辨率，默认256
+--max_bucket_reso	分桶时最大分辨率，默认1024
+--bucket_reso_steps	分桶时的补偿，默认是64	推荐设为能被8整除的数
+--bucket_no_upscale	分桶时对图像不进行放大
+--caption_dropout_rate	标签丢弃率，默认是0	需要support_caption_dropout开启（默认开启），没怎么用过
+--caption_dropout_every_n_epochs	每多少轮将标签全部丢弃，默认0
+--caption_tag_dropout_rate	以逗号隔开的标签的丢弃率，默认是0
+--reg_data_dir	正则数据路径
+--in_json	json格式的数据集信息
+--dataset_repeats	训练时数据集重复次数
+training_arguments 训练相关参数	--output_dir	训练模型保存目录
+--output_name	训练模型保存名称
+--save_precision	模型保存精度
+--save_every_n_epochs	每多少轮保存一个模型
+--save_n_epoch_ratio	保存模型文件的数目
+--save_last_n_epochs_state	保存倒数n个模型文件及其state
+--save_state	保存模型的state
+--resume	断点续训
+--train_batch_size	训练的batch size，默认1
+--max_token_length	最大token的大小，默认75，也可以设为150，225
+--mem_eff_attn	启用内存高效的CrossAttention
+--xformers	启用xformers加速CrossAttention
+--max_train_steps	最大训练步长，默认1600
+--max_train_epochs	最大训练轮次	会覆盖掉--max_train_steps
+--max_data_loader_n_workers	数据加载的dataloder worker数，默认8
+--persistent_data_loader_workers	启用预取训练集，会加速数据读取，但会更耗显存
+--seed	随机种子
+--gradient_checkpointing	开启梯度检查
+--gradient_accumulation_steps	梯度累积步数，默认1
+--mixed_precision	是否开启混合精度，默认否
+--full_fp16	开启fp16训练，包括梯度也是fp16
+--clip_skip	使用text encoder的倒数n层输出	二次元用2，三次元用1
+--logging_dir	训练日志存放目录
+--log_prefix	日志文件前缀
+--noise_offset	噪声偏置，建议0.1左右	会对模型生成图像的亮度产生调整作用
+--lowram	开启低ram
+--sample_every_n_steps	每隔多少步生成图片
+--sample_every_n_epochs	每隔多少轮生成图片	会覆盖sample_every_n_steps
+--sample_prompts	生成图像时的prompts
+--sample_sampler	生成图像时的采样方法，默认ddim
+--config_file	使用.tmol配置文件的文件路径
+--output_config	是否生成.tmol配置文件
+--prior_loss_weight	采用正则时，先验损失的权重，默认1
+optimizer_arguments优化相关参数	--optimizer_type	优化器类型
+--use_8bit_adam	使用8bit AdamW优化器
+--use_lion_optimizer	使用Lion优化器
+--learning_rate	学习率，默认2.0e-6
+--max_grad_norm	最大梯度norm，默认1.0
+--optimizer_args	优化器的其他参数，如weight_decay等
+--lr_scheduler_type	用户自定义学习率策略
+--lr_scheduler_args	学习率策略的其他参数
+--lr_scheduler	学习率测略，默认constant
+--lr_warmup_steps	warmup的步数，默认0
+--lr_scheduler_num_cycles	学习率重启的次数，默认1	与consine_with_restarts策略一起使用
+--lr_scheduler_power	拟合学习率的拟合强度，默认1	与polynomial策略一起使用
+config_arguments配置相关参数	--dataset_config	详细的配置文件
+--no_metadata	不保存Metadata到模型文件中
+--save_model_as	模型保存的格式，默认safetensors
+--unet_lr	unet的学习率
+--text_encoder_lr	text_encoder的学习率
+--network_weights	预训练模型的参数文件
+--network_module	训练的网络模块
+--network_dim	网络的dim参数
+--network_alpha	网络的alpha参数，默认1	缩放模型权重
+--network_args	网络的其他参数
+--network_train_unet_only	只训练unet部分
+--network_train_text_encoder_only	只训练text_encoder部分
+--training_comment	对网络的描述信息	
+```

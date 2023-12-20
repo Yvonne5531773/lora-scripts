@@ -1,21 +1,21 @@
 [model_arguments]
 v2 = false
 v_parameterization = false
-pretrained_model_name_or_path = "/appdata/finetuning/sd-models/model.ckpt"
+pretrained_model_name_or_path = "/appdata/finetuning/sd-models/majicmixRealistic_v6.safetensors"
 
 [dataset_arguments]
-train_data_dir = "/appdata/finetuning/train/aki"
+train_data_dir = "/appdata/finetuning/train/zjz_blue/v3"
 reg_data_dir = ""
-resolution = "512,512"
+resolution = "576,768"
 prior_loss_weight = 1
 
 [additional_network_arguments]
-network_dim = 32
-network_alpha = 16
+network_dim = 128
+network_alpha = 128
 network_train_unet_only = false
 network_train_text_encoder_only = false
-network_module = "networks.lora"
-network_args = []
+network_module = "lycoris.kohya"
+network_args = [ "conv_dim = 4", "conv_alpha = 4", "algo = \"lora\"", "dropout = \"0\"" ]
 
 [optimizer_arguments]
 unet_lr = 1e-4
@@ -27,9 +27,9 @@ lr_warmup_steps = 0
 lr_restart_cycles = 1
 
 [training_arguments]
-train_batch_size = 1
+train_batch_size = 2
 noise_offset = 0.0
-keep_tokens = 0
+keep_tokens = 1
 min_bucket_reso = 256
 max_bucket_reso = 1024
 caption_extension = ".txt"
@@ -37,22 +37,22 @@ max_token_length = 225
 seed = 1337
 xformers = true
 lowram = false
-max_train_epochs = 10
-resolution = "512,512"
+max_train_epochs = 15
+resolution = "576,768"
 clip_skip = 2
 mixed_precision = "fp16"
 
 [sample_prompt_arguments]
-sample_sampler = "euler_a"
-sample_every_n_epochs = 5
+sample_sampler = "euler"
+sample_every_n_epochs = 2
 
 [saving_arguments]
-output_name = "output_name"
-save_every_n_epochs = 1
+output_name = "zjz_blue_majic_576_768_v1"
+save_every_n_epochs = 2
 save_state = false
 save_model_as = "safetensors"
-output_dir = "/appdata/finetuning/output"
-logging_dir = "./logs"
+output_dir = "/appdata/finetuning/output/zjz_blue/lycoris_v1"
+logging_dir = "./logs/zjz_blue/lycoris_v1"
 log_prefix = ""
 save_precision = "fp16"
 

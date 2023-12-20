@@ -1,0 +1,38 @@
+[general]
+enable_bucket = true
+caption_extension = '.txt'
+shuffle_caption = false
+keep_tokens = 1
+
+# これは DreamBooth 方式のデータセット
+[[datasets]]
+resolution = [768, 1024]
+batch_size = 2
+
+  [[datasets.subsets]]
+  image_dir = 'train/dreambooth/cfyq/v1_2_3'
+  num_repeats = 10
+#  class_tokens = 'cfyq girl'
+  # このサブセットは keep_tokens = 2 （所属する datasets の値が使われる）
+
+#  [[datasets.subsets]]
+#  is_reg = true
+#  image_dir = 'train/dreambooth/cfyq/reg'
+#  num_repeats = 1
+
+## これは fine tuning 方式のデータセット
+#[[datasets]]
+#resolution = [768, 768]
+#batch_size = 2
+#
+#  [[datasets.subsets]]
+#  image_dir = 'C:\piyo'
+#  metadata_file = 'C:\piyo\piyo_md.json'
+#  # このサブセットは keep_tokens = 1 （general の値が使われる）
+
+
+# DreamBooth-style 特有的参数：
+#image_dir	‘C:\hoge’	-	-	o (required)	图片目录路径，必需项，图片应直接存在该目录下
+#caption_extension	".txt"	o	o	o	文本描述文件的扩展名
+#class_tokens	“sks girl”	-	-	o	标识符+类别
+#is_reg	false	-	-	o	是否是正则化图片

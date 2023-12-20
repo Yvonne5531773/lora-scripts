@@ -1,0 +1,15 @@
+[general]
+enable_bucket = true
+#caption_extension = '.txt'
+shuffle_caption = false
+keep_tokens = 1
+
+# これは fine tuning 方式のデータセット
+[[datasets]]
+resolution = [768, 768]
+batch_size = 2
+
+  [[datasets.subsets]]
+  image_dir = 'train/finetuning/avatar/v1_2_3_768_768'
+  metadata_file = 'train/finetuning/avatar/metadata/v1_2_3_768_768/meta_clean.json'
+  # このサブセットは keep_tokens = 1 （general の値が使われる）

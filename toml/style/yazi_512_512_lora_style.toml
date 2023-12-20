@@ -1,25 +1,27 @@
 [model_arguments]
 v2 = false
 v_parameterization = false
-pretrained_model_name_or_path = "/appdata/finetuning/sd-models/model.ckpt"
+pretrained_model_name_or_path = "/appdata/finetuning/sd-models/yqAvatar_ft_512_512_v32.safetensors"
 
 [dataset_arguments]
-train_data_dir = "/appdata/finetuning/train/aki"
-reg_data_dir = ""
+train_data_dir = "/appdata/finetuning/train/yazi/v1"
+reg_data_dir = "/appdata/finetuning/train/yazi/reg"
 resolution = "512,512"
 prior_loss_weight = 1
 
 [additional_network_arguments]
-network_dim = 32
-network_alpha = 16
+network_dim = 128
+network_alpha = 96
 network_train_unet_only = false
 network_train_text_encoder_only = false
 network_module = "networks.lora"
 network_args = []
 
 [optimizer_arguments]
-unet_lr = 1e-4
-text_encoder_lr = 1e-5
+unet_lr = 0.00004
+text_encoder_lr = 0.00008
+#unet_lr = 0.00004
+#text_encoder_lr = 0.00012
 
 optimizer_type = "AdamW8bit"
 lr_scheduler = "cosine_with_restarts"
@@ -27,9 +29,9 @@ lr_warmup_steps = 0
 lr_restart_cycles = 1
 
 [training_arguments]
-train_batch_size = 1
+train_batch_size = 2
 noise_offset = 0.0
-keep_tokens = 0
+keep_tokens = 1
 min_bucket_reso = 256
 max_bucket_reso = 1024
 caption_extension = ".txt"
@@ -43,20 +45,21 @@ clip_skip = 2
 mixed_precision = "fp16"
 
 [sample_prompt_arguments]
-sample_sampler = "euler_a"
-sample_every_n_epochs = 5
+sample_sampler = "euler"
+sample_every_n_epochs = 1
 
 [saving_arguments]
-output_name = "output_name"
+output_name = "yazi_512_512_v2"
 save_every_n_epochs = 1
 save_state = false
 save_model_as = "safetensors"
-output_dir = "/appdata/finetuning/output"
-logging_dir = "./logs"
+output_dir = "/appdata/finetuning/output/yazi/lora_v2"
+logging_dir = "./logs/yazi/lora_2"
 log_prefix = ""
 save_precision = "fp16"
 
 [others]
 cache_latents = true
 shuffle_caption = true
-enable_bucket = true
+enable_bucket = false
+scale_weight_norms = 1.0

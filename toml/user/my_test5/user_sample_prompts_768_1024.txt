@@ -1,0 +1,1 @@
+1girl, --n lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts,signature, watermark, username, blurry,  --w 768  --h 1024  --l 7  --s 24  --d 1337

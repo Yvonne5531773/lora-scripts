@@ -1,0 +1,15 @@
+[general]
+#enable_bucket = true
+#caption_extension = '.txt'
+shuffle_caption = true
+keep_tokens = 1
+
+# これは fine tuning 方式のデータセット
+[[datasets]]
+resolution = [768, 1024]
+batch_size = 2
+
+  [[datasets.subsets]]
+  image_dir = 'train/dreambooth/cfyq/v1_2_3_4_5'
+  metadata_file = 'train/dreambooth/cfyq/metadata/v1_2_3_4_5/meta_clean.json'
+  # このサブセットは keep_tokens = 1 （general の値が使われる）
